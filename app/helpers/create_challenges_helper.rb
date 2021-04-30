@@ -1,0 +1,2 @@
+module CreateChallengesHelper
+end
