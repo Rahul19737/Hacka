@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  
+  has_many :create_challenges
   validate :validate_employee_id
   attr_writer :login
 
