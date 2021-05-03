@@ -26,6 +26,11 @@
     <%= form.text_field :tags, id: :create_challenge_tags %>
   </div>
 
+  <div class="field">
+    <%= form.label :employee_id %>
+    <%= form.text_field :employee_id, id: :create_challenge_employee_id, value: current_user.employee_id %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

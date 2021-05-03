@@ -1,29 +1,36 @@
-<h1>Create Challenges</h1>
+<h1>Challenges</h1>
 
-<table>
+<table class="table table-striped table-primary">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Tags</th>
-      <th colspan="3"></th>
+      <th scope='col'>Challenge Id</th>
+      <th scope='col'>Title</th>
+      <th scope='col'>Description</th>
+      <th scope='col'>Votes Count</th>
+      <th scope='col'>Created By</th>
+      <th scope='col'>Create Date</th>
+      <th scope='col'>Tags</th>
+      <th scope='col'>Collaborators</th>
+      <%# <th colspan="3"></th> %>
     </tr>
   </thead>
-
   <tbody>
     <% @create_challenges.each do |create_challenge| %>
       <tr>
+        <td><%= create_challenge.id %></td>
         <td><%= create_challenge.title %></td>
         <td><%= create_challenge.description %></td>
+        <td>0</td>
+        <td><%= create_challenge.employee_id %></td>
+        <td><%= create_challenge.created_at %></td>
         <td><%= create_challenge.tags %></td>
-        <td><%= link_to 'Show', create_challenge %></td>
-        <td><%= link_to 'Edit', edit_create_challenge_path(create_challenge) %></td>
-        <td><%= link_to 'Destroy', create_challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>0</td>
+        <td><%#= link_to 'Show', create_challenge %></td>
+        <td><%#= link_to 'Edit', edit_create_challenge_path(create_challenge) %></td>
+        <td><%#= link_to 'Destroy', create_challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Create Challenge', new_create_challenge_path %>
+<%= link_to 'Create Challenge', new_create_challenge_path, class: 'btn btn-primary' %>
