@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210502081517) do
+ActiveRecord::Schema.define(version: 20210503074852) do
 
   create_table "create_challenges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20210502081517) do
     t.string "tags"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "employee_id"
+    t.index ["employee_id"], name: "index_create_challenges_on_employee_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
