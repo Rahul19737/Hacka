@@ -20,7 +20,11 @@
         <td><%= create_challenge.id %></td>
         <td><%= create_challenge.title %></td>
         <td><%= create_challenge.description %></td>
-        <td>0</td>  
+        <td>
+          <%= link_to vote_path(create_challenge) do %>
+            +
+          <% end %>
+        </td>  
         <td><%= create_challenge.user_id %></td>
         <td><%= create_challenge.created_at %></td>
         <td><%= create_challenge.tags %></td>

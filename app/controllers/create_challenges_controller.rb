@@ -1,5 +1,5 @@
 class CreateChallengesController < ApplicationController
-  before_action :set_create_challenge, only: %i[ show edit update destroy ]
+  before_action :set_create_challenge, only: %i[ show edit update destroy vote ]
 
   # GET /create_challenges or /create_challenges.json
   def index
@@ -53,6 +53,26 @@ class CreateChallengesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to create_challenges_url, notice: "Create challenge was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def vote
+    if current_user.id != @create_challenge.user_id
+      @validate = Vote.where({user_id: current_user.id, create_challenge_id: @create_challenge.id})
+      if @validate.blank?
+        @vote = Vote.new({:user_id => current_user.id, :create_challenge_id => @create_challenge.id})
+        @vote.save
+        # @create_challenge.increment!(:votes)
+        flash[:notice] = "Vote Recorded"
+      else
+        flash[:alert] = "Vote Already Recorded"
+      end
+    else
+      flash[:alert] = "You can't upvote your own challenge"
+    end
+    respond_to do |f|
+      f.html{ redirect_to root_path }
+      f.json{ head :no_content }
     end
   end
 

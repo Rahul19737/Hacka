@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210503184614) do
+ActiveRecord::Schema.define(version: 20210504065931) do
 
   create_table "create_challenges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -36,4 +36,15 @@ ActiveRecord::Schema.define(version: 20210503184614) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
+  create_table "votes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "create_challenge_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["create_challenge_id"], name: "index_votes_on_create_challenge_id"
+    t.index ["user_id"], name: "index_votes_on_user_id"
+  end
+
+  add_foreign_key "votes", "create_challenges"
+  add_foreign_key "votes", "users"
 end
