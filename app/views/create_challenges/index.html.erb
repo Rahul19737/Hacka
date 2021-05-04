@@ -24,14 +24,15 @@
           <%= link_to vote_path(create_challenge) do %>
             +
           <% end %>
+          <%= create_challenge.vote_count %>
         </td>  
         <td><%= create_challenge.user_id %></td>
         <td><%= create_challenge.created_at %></td>
         <td><%= create_challenge.tags %></td>
         <td>0</td>
         <td><%#= link_to 'Show', create_challenge %></td>
-        <td><%#= link_to 'Edit', edit_create_challenge_path(create_challenge) %></td>
-        <td><%#= link_to 'Destroy', create_challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_create_challenge_path(create_challenge) %></td>
+        <td><%= link_to 'Destroy', create_challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

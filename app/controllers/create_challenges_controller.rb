@@ -57,18 +57,18 @@ class CreateChallengesController < ApplicationController
   end
 
   def vote
-    if current_user.id != @create_challenge.user_id
+    if @create_challenge.user != current_user
       @validate = Vote.where({user_id: current_user.id, create_challenge_id: @create_challenge.id})
       if @validate.blank?
         @vote = Vote.new({:user_id => current_user.id, :create_challenge_id => @create_challenge.id})
         @vote.save
-        # @create_challenge.increment!(:votes)
+        @create_challenge.increment!(:vote_count)
         flash[:notice] = "Vote Recorded"
       else
-        flash[:alert] = "Vote Already Recorded"
+        flash[:notice] = "Vote Already Recorded"
       end
     else
-      flash[:alert] = "You can't upvote your own challenge"
+      flash[:notice] = "You can't upvote your own challenge"
     end
     respond_to do |f|
       f.html{ redirect_to root_path }
