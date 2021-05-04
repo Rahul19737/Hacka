@@ -4,6 +4,7 @@ class CreateChallengesController < ApplicationController
   # GET /create_challenges or /create_challenges.json
   def index
     @create_challenges = CreateChallenge.all
+    @create_challenge = CreateChallenge.new
   end
 
   # GET /create_challenges/1 or /create_challenges/1.json
@@ -25,7 +26,7 @@ class CreateChallengesController < ApplicationController
 
     respond_to do |format|
       if @create_challenge.save
-        format.html { redirect_to @create_challenge, notice: "Create challenge was successfully created." }
+        format.html { redirect_to @create_challenge, notice: "Challenge was successfully created." }
         format.json { render :show, status: :created, location: @create_challenge }
       else
         format.html { render :new, status: :unprocessable_entity }
