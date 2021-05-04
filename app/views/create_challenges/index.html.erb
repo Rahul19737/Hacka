@@ -1,6 +1,9 @@
 <h1>Create Challenge</h1>
 
 <%= render 'form', create_challenge: @create_challenge %>
+
+<br>
+
 <h1>Challenges List</h1>
 
 <table class="table table-striped">
@@ -33,12 +36,13 @@
         <td><%= create_challenge.created_at %></td>
         <td><%= create_challenge.tags %></td>
         <td>0</td>
-        <td><%#= link_to 'Show', create_challenge %></td>
+        <!-- <td><%#= link_to 'Show', create_challenge %></td>
         <td><%#= link_to 'Edit', edit_create_challenge_path(create_challenge) %></td>
-        <td><%= link_to 'Destroy', create_challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', create_challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>
 </table>
+<br>
 
 <%#= link_to 'Create Challenge', new_create_challenge_path, class: 'btn btn-primary' %>
