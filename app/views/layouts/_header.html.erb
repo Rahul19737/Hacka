@@ -5,7 +5,7 @@
     <% if user_signed_in? %>
       <li class="nav-item ">
         <%= link_to destroy_user_session_path(@user), class: 'nav-link', method: :delete do %>
-          Log Out (<%= current_user.employee_id %>)
+          Log Out (<%= current_user.user_id %>)
         <% end %>
       </li>
     <% else %>

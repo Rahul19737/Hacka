@@ -64,6 +64,6 @@ class CreateChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def create_challenge_params
-      params.require(:create_challenge).permit(:title, :description, :tags, :employee_id)
+      params.require(:create_challenge).permit(:title, :description, :tags, :user_id)
     end
 end

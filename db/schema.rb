@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210503074852) do
+ActiveRecord::Schema.define(version: 20210503184614) do
 
   create_table "create_challenges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20210503074852) do
     t.string "tags"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "employee_id"
-    t.index ["employee_id"], name: "index_create_challenges_on_employee_id"
+    t.string "user_id"
+    t.index ["user_id"], name: "index_create_challenges_on_user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -30,10 +30,10 @@ ActiveRecord::Schema.define(version: 20210503074852) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "employee_id"
+    t.string "user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["employee_id"], name: "index_users_on_employee_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
 end
