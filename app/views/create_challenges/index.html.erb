@@ -41,6 +41,7 @@
           <% end %>
           <% @collaborate =  Collaborate.where(create_challenge_id: create_challenge.id) %>
             <% if !@collaborate.blank?  %>
+                <%= " | " %>
               <% @collaborate.each do | collaborator | %>
                 <%= collaborator.employee_id %>
                 <%= " | " %>
