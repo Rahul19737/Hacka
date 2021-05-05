@@ -1,4 +1,4 @@
-<%= form_with(model: create_challenge, local: true, class:"form-inline") do |form| %>
+<%= form_with(model: create_challenge, local: true, class:"form-inline justify-content-center") do |form| %>
   <% if create_challenge.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(create_challenge.errors.count, "error") %> prohibited this create_challenge from being saved:</h2>
@@ -13,22 +13,27 @@
 
   <div class="field">
     <% form.label :title %>
-    <%= form.text_field :title, id: :create_challenge_title, class:"form-control mb-2 mr-sm-2", placeholder:"Title" %>
+    <%= form.text_field :title, class:"form-control mb-2 mr-sm-2", placeholder:"Title" %>
   </div>
 
   <div class="field">
     <% form.label :description %>
-    <%= form.text_field :description, id: :create_challenge_description, class:"form-control mb-2 mr-sm-2", placeholder:"Description" %>
+    <%= form.text_field :description, class:"form-control mb-2 mr-sm-2", placeholder:"Description" %>
   </div>
 
   <div class="field">
     <% form.label :tags %>
-    <%= form.text_field :tags, id: :create_challenge_tags, class:"form-control mb-2 mr-sm-2", placeholder:"Tags" %>
+    <%= form.select(:tags, %w[DP C Cpp OOPs Others], {include_blank: 'Select Tag'}, {class:"form-control custom-select mb-2 mr-sm-2"}) %>
   </div>
 
   <div class="field">
     <% form.label :user_id %>
-    <%= form.text_field :user_id, id: :create_challenge_user_id, value: current_user.id, type: :hidden %>
+    <%= form.text_field :user_id, value: current_user.id, type: :hidden %>
+  </div>
+
+  <div class="field">
+    <% form.label :employee_id %>
+    <%= form.text_field :employee_id, value: current_user.user_id, type: :hidden %>
   </div>
 
   <div class="actions">
