@@ -35,7 +35,18 @@
         <td><%= create_challenge.employee_id %></td>
         <td><%= create_challenge.created_at %></td>
         <td><%= create_challenge.tags %></td>
-        <td>0</td>
+        <td>
+          <%= link_to collaborate_path(create_challenge) do %>
+            +
+          <% end %>
+          <% @collaborate =  Collaborate.where(create_challenge_id: create_challenge.id) %>
+            <% if !@collaborate.blank?  %>
+              <% @collaborate.each do | collaborator | %>
+                <%= collaborator.employee_id %>
+                <%= " | " %>
+              <% end %>
+            <% end %>
+        </td>
         <!-- <td><%#= link_to 'Show', create_challenge %></td>
         <td><%#= link_to 'Edit', edit_create_challenge_path(create_challenge) %></td>
         <td><%= link_to 'Destroy', create_challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->

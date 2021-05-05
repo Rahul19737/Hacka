@@ -1,5 +1,5 @@
 class CreateChallengesController < ApplicationController
-  before_action :set_create_challenge, only: %i[ show edit update destroy vote ]
+  before_action :set_create_challenge, only: %i[ show edit update destroy vote collaborate ]
 
   # GET /create_challenges or /create_challenges.json
   def index
@@ -26,10 +26,11 @@ class CreateChallengesController < ApplicationController
 
     respond_to do |format|
       if @create_challenge.save
-        format.html { redirect_to @create_challenge, notice: "Challenge was successfully created." }
-        format.json { render :show, status: :created, location: @create_challenge }
+        format.html { redirect_to root_path, notice: "Challenge was successfully created." }
+        format.json { render :index, status: :created, location: @create_challenge }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to root_path, status: :unprocessable_entity }
+        flash[:notice] = "Empty fields detected"
         format.json { render json: @create_challenge.errors, status: :unprocessable_entity }
       end
     end
@@ -57,6 +58,7 @@ class CreateChallengesController < ApplicationController
     end
   end
 
+  # voting
   def vote
     if @create_challenge.user != current_user
       @validate = Vote.where({user_id: current_user.id, create_challenge_id: @create_challenge.id})
@@ -77,6 +79,26 @@ class CreateChallengesController < ApplicationController
     end
   end
 
+  # collaboration
+  def collaborate
+    if @create_challenge.user_id != current_user.id
+      @validate = Collaborate.where({user_id: current_user.id, create_challenge_id: @create_challenge.id})
+      if @validate.blank?
+        @collaborate = Collaborate.new({:user_id => current_user.id, :create_challenge_id => @create_challenge.id, :employee_id => current_user.user_id})
+        @collaborate.save
+        flash[:notice] = "You Can Contribute"
+      else
+        flash[:notice] = "Already A Contributor"
+      end
+    else
+      flash[:notice] = "You can't be a contributor to your own challenge"
+    end
+    respond_to do |f|
+      f.html{ redirect_to root_path }
+      f.json{ head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_create_challenge
@@ -85,6 +107,6 @@ class CreateChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def create_challenge_params
-      params.require(:create_challenge).permit(:title, :description, :tags, :user_id)
+      params.require(:create_challenge).permit(:title, :description, :tags, :user_id, :employee_id)
     end
 end

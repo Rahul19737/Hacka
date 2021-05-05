@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  create_challenge: one
+  user: one
+  employee_id: MyString
+
+two:
+  create_challenge: two
+  user: two
+  employee_id: MyString
