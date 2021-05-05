@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210504071752) do
+ActiveRecord::Schema.define(version: 20210504133720) do
 
   create_table "create_challenges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20210504071752) do
     t.datetime "updated_at", null: false
     t.string "user_id"
     t.integer "vote_count", default: 0, null: false
+    t.string "employee_id"
     t.index ["user_id"], name: "index_create_challenges_on_user_id"
   end
 
