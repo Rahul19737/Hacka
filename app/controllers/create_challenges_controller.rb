@@ -81,7 +81,7 @@ class CreateChallengesController < ApplicationController
 
   # collaboration
   def collaborate
-    if @create_challenge.user_id != current_user.id
+    if @create_challenge.user != current_user
       @validate = Collaborate.where({user_id: current_user.id, create_challenge_id: @create_challenge.id})
       if @validate.blank?
         @collaborate = Collaborate.new({:user_id => current_user.id, :create_challenge_id => @create_challenge.id, :employee_id => current_user.user_id})
