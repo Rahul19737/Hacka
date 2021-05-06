@@ -3,7 +3,8 @@ class CreateChallengesController < ApplicationController
 
   # GET /create_challenges or /create_challenges.json
   def index
-    @create_challenges = CreateChallenge.all
+    # @create_challenges = CreateChallenge.all
+    @create_challenges = CreateChallenge.order(params[:sort])
     @create_challenge = CreateChallenge.new
   end
 
@@ -29,7 +30,7 @@ class CreateChallengesController < ApplicationController
         format.html { redirect_to root_path, notice: "Challenge was successfully created." }
         format.json { render :index, status: :created, location: @create_challenge }
       else
-        format.html { redirect_to root_path, status: :unprocessable_entity }
+        format.html { redirect_to root_path }
         flash[:notice] = "Empty fields detected"
         format.json { render json: @create_challenge.errors, status: :unprocessable_entity }
       end

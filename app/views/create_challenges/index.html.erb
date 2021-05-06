@@ -12,9 +12,9 @@
       <th scope='col'>Challenge Id</th>
       <th scope='col'>Title</th>
       <th scope='col'>Description</th>
-      <th scope='col'>Votes Count</th>
+      <th><%= link_to "Votes Count", :sort => "vote_count"%> </th>
       <th scope='col'>Created By</th>
-      <th scope='col'>Create Date</th>
+      <th><%= link_to "Create Date", :sort => "created_at"%> </th>
       <th scope='col'>Tags</th>
       <th scope='col'>Collaborators</th>
       <%# <th colspan="3"></th> %>
