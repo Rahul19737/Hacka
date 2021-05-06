@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   has_many :create_challenge
   has_many :vote
+  has_many :collaborate
   validate :validate_user_id
   attr_writer :login
 
